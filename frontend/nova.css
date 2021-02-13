@@ -1,0 +1,71 @@
+body{
+background-image: url(https://images.unsplash.com/photo-1583746474545-42e58812e1d7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTkzfHxtaW5pbWFsaXN0aWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+.forma{
+    padding: 20px;
+    float: right;
+    width: 50%;
+    margin: 50px;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    background-color: rgba(235, 231, 231, 0.89);
+  }
+h1 {
+margin-left: 70px;
+}
+form li {
+list-style: none;
+margin-bottom: 5px;
+}
+
+form ul li label{
+float: left;
+clear: left;
+width: 150px;
+text-align: left;
+margin-right: 10px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:14px;
+}
+
+.container {
+    padding: 16px;
+}
+
+form ul li input, select, span {
+float: left;
+margin-bottom: 10px;
+}
+
+form textarea {
+float: left;
+width: 350px;
+height: 150px;
+}
+
+[type="submit"] {
+clear: left;
+margin: 20px 0 0 230px;
+font-size:18px
+}
+
+p {
+margin-left: 70px;
+font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+body{
+    background-image: unset;
+}
+    .forma{
+        background-color: rgb(255, 255, 255);
+        border: none;;
+        width: 90%;
+        float: none;
+        margin: 20px;
+    }
+}

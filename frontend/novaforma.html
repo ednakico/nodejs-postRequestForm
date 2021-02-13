@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>JavaScript Form Validation using a sample registration form</title>
+
+<link rel="stylesheet" href="nova.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body onload="document.registration.userid.focus();">
+  <div class="forma">
+    <h1>Registration Form</h1>
+
+      <form id="registracija" name='registration'>
+        <div class="container">
+          <ul>
+
+            <li><label for="userid">Username:</label></li>
+            <li><input type="text" onblur="validate()"id="uname" placeholder="Enter username"name="userid" size="20" required></li>
+            <!-- <span id='umsg' ></span> -->
+            <span class="alert alert-danger d-none" id="umsg" role="alert"></span>
+
+            <li><label for="Name">First name:</label></li>
+            <li><input type="text" placeholder="Enter name"name="name" onblur="validateForm1()"  size="20"pattern="[A-Za-z]+"required></li>
+            <!-- <span id='namemsg1' style="color:red; display:none">Name field can not be blank. Please enter your name using only letters.</span> -->
+            <span class="alert alert-danger d-none" id="namemsg1" role="alert">Name field can not be blank. Please enter your name using only letters.</span>
+
+            <li><label for="lname">Last name:</label></li>
+            <li><input type="text" placeholder="Enter last name"name="lname" onblur="validateForm2()" size="20" pattern="[A-Za-z]+" required></li>
+            <!-- <span id='lnamemsg1' style="color:red; display:none">Last name field can not be blank. Please enter your last name using only letters.</span> -->
+            <span class="alert alert-danger d-none" id="lnamemsg1" role="alert">Last name field can not be blank. Please enter your last name using only letters.</span>
+
+            <li><label>Password:</label></li>
+            <li><input type="password" placeholder="Enter password " name=password" onkeyup='check();'  id="password" size="20" required></li>    
+
+            <li><label>Confirm Password:</label></li>
+            <li><input type="password" placeholder="Enter password "name=password2" onkeyup='check();'id="password2" size="20" required></li>
+            <br>
+            <!-- <span id='message'></span> -->
+            <span class="alert alert-danger d-none" id="message" role="alert"></span>
+
+            <li><label for="code">Code:</label></li>
+            <li><input id="codeinput" type="text" placeholder="xx-xx-xxx "name="code" size="20" required></li>
+            <br>
+            <!-- <span id='codemsg' style="color:red; display:none">Not a valid code. Please follow the pattern.</span> -->
+            <span class="alert alert-danger d-none" id="codemsg" role="alert">Not a valid code. Please follow the pattern.</span>
+            <li><label for="country">Country:</label></li>
+            <li><select name="country">
+              <option selected="" value="Default">(Please select a country)</option>
+              <option value="BH">Bosna i Hercegovina</option>
+              <option value="HR">Hrvatska</option>
+              <option value="SR">Srbija</option>
+              <option value="MK">Makedonija</option>
+              <option value="CG">Crna Gora</option>
+            </select></li>
+
+            <li><label for="zip">ZIP Code:</label></li>
+            <li><input type="text"placeholder="Enter ZIP" onblur="zipval()"id="Zip" name="zip" pattern="[0-9]+" required></li>
+            <!-- <span id='zipmsg1' style="color:red; display:none">ZIP field can not be blank.Please enter a ZIP code (only numbers).</span> -->
+            <span class="alert alert-danger d-none" class="d-none" id="zipmsg1" role="alert">ZIP field can not be blank.Please enter a ZIP code (only numbers).</span>
+
+            <li><label for="email">Email:</label></li>
+            <li><input type="text" placeholder="me@example.com" onblur="validate()" name="email" id="Email" size="20" required></li>
+            <!--<span id='emailmsg' style="color:red; display:none">Not a valid e-mail adress.</span>-->
+            <!-- <span id='emailmsg'></span> -->
+            <span class="alert alert-danger d-none" id="emailmsg" role="alert"></span>
+
+            <li><label id="gender">Sex:</label></li>
+            <li><input type="radio" id="m"name="gen" value="Male" /><span>Male</span></li>
+            <li><input type="radio" id="f" name="gen" value="Female" /><span>Female</span></li>
+            <li><input type="radio" id="o"name="gen" value="Other" /><span>Other</span></li>
+            <!-- <span id='gendermsg' style="color:red; display:none"> You must select your preferred gender to continue.</span> -->
+            <span class="alert alert-danger d-none" id="gendermsg" role="alert">You must select your preferred gender to continue.</span>
+            <li><label>Interests:</label></li>
+            <li><input type="checkbox" name="mo" value="mo" /><span>Movies</span></li>
+            <li><input type="checkbox" name="mu" value="mu" /><span>Music</span></li>
+            <li><input type="checkbox" name="ar" value="ar" /><span>Art</span></li>
+            <li><input type="checkbox" name="sp" value="sp" /><span>Sport</span></li>
+
+            <li><label for="desc">About:</label></li>
+            <li><textarea name="desc" id="desc"></textarea></li>
+            <li><input type="submit" name="submit" value="Submit" /></li>
+          </ul>
+        </div>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    /*
+    *Funkcija za provjeru patterna
+    *
+    * @param event - DOM event
+    */
+    let form= document.getElementById("registracija");
+    const handleForm=(event)=> {
+      event.preventDefault();
+
+      // regex za pattern - prima 2 broja - 2 broja - tri broja
+      // validacija se provjerava tek kada se klikne na submit
+      const codeRegex=/^[0-9]{2}-[0-9]{2}-[0-9]{3}$/ 
+      const code=document.getElementById('codeinput').value;
+
+      //uslov da je pattern razlicit od unosa
+      if(!codeRegex.test(code)) { 
+        document.getElementById("codemsg").classList.remove("d-none");
+        document.getElementById("codemsg").style.display="" 
+
+      }else{
+        document.getElementById("codemsg").classList.add("d-none")
+        document.getElementById("codemsg").innerHTML=""; 
+      }
+      /*
+      *Funkcija za provjeru radio button
+      *
+      *  validacija se provjerava tek kada se klikne na submit
+      */
+      const mcheckbox=document.getElementById('m').checked;
+      const fcheckbox=document.getElementById('f').checked;
+      const ocheckbox=document.getElementById('o').checked;
+
+      //provjera da li nije ukljucen ni jedan radio button
+      if(!(mcheckbox||fcheckbox||ocheckbox)) {  
+        document.getElementById("gendermsg").classList.remove("d-none");
+        document.getElementById("gendermsg").style.display=""        
+
+      } else{
+        document.getElementById("gendermsg").classList.add("d-none");
+        document.getElementById("gendermsg").innerHTML=""; 
+      }
+    }
+    /*
+    * Funkcija za provjeru podudaranja passworda
+    *
+    */
+    form.addEventListener('submit',handleForm);
+    var check = function() { 
+
+      if (document.getElementById('password').value == document.getElementById('password2').value) {
+        document.getElementById("message").classList.add("d-none");
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = '';
+      } else {
+        document.getElementById("message").classList.remove("d-none");
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = ' Your passwords are not matching. Please make sure they match. ';
+      }
+    }
+
+    function validate()
+    {
+      //funkcija za provjeru validacije emaila i usernamea
+      var uname = document.getElementById("uname").value;
+      var Email = document.getElementById("Email").value;
+      var patcheck = new RegExp("^[a-z0-9]");
+
+      if(uname===""){
+        document.getElementById("umsg").classList.remove("d-none");
+        document.getElementById("umsg").innerHTML="Please enter a username (You can use low letters and numbers)";
+        document.getElementById("umsg").style.color="Red";
+      } else {
+          document.getElementById("umsg").classList.add("d-none");
+          document.getElementById("umsg").innerHTML="";
+      }
+
+      if(Email.indexOf("@")> -1){
+        document.getElementById("emailmsg").classList.add("d-none");
+        document.getElementById("emailmsg").innerHTML="";
+      } else {
+        document.getElementById("emailmsg").classList.remove("d-none");
+        document.getElementById("emailmsg").innerHTML="Please make sure you entered the correct email address. (me@example.com)";
+        document.getElementById("emailmsg").style.color="Red";
+      }
+      
+    }
+    //funkcija validacije prezimena
+    function validateForm2() { 
+      var regex = new RegExp("^[A-Za-z ]+$");//samo slova
+      var x = document.forms["registration"]["lname"].value;
+
+      //ako je polje prazno ispisuje poruku
+      if (x == null || x == ""){ 
+        document.getElementById("lnamemsg1").classList.remove("d-none");
+        document.getElementById("lnamemsg1").style.display=""        
+
+        return false;
+     } else {
+        document.getElementById("lnamemsg1").classList.add("d-none");
+        document.getElementById("lnamemsg1").innerHTML="";
+      }
+    }
+    // funkcija za validaciju imena
+    function validateForm1() {
+      var regex = new RegExp("^[A-Za-z ]+$");
+      var x = document.forms["registration"]["name"].value;
+      if (x == null || x == "") {
+        document.getElementById("namemsg1").classList.remove("d-none");
+        document.getElementById("namemsg1").style.display=""        
+
+        return false;
+      } else {
+        document.getElementById("namemsg1").classList.add("d-none");
+        document.getElementById("namemsg1").innerHTML="";
+      }
+    }
+    //funkcija za validaciju zip koda
+    function zipval() {
+      var regex = new RegExp("^[0-9 ]");
+      var x = document.forms["registration"]["zip"].value;
+      if (x == null || x == ""){
+        document.getElementById("zipmsg1").classList.remove("d-none");
+        document.getElementById("zipmsg1").style.display=""        
+
+        return false;
+      } else {
+        document.getElementById("zipmsg1").classList.add("d-none");
+        document.getElementById("zipmsg1").innerHTML="";
+      }
+    }
+
+    
+
+  </script>
+</body>
+</html>
