@@ -20,7 +20,7 @@
             <span class="alert alert-danger d-none" id="umsg" role="alert"></span>
 
             <li><label for="Name">First name:</label></li>
-            <li><input type="text" placeholder="Enter name"name="name" onblur="validateForm1()"  size="20"pattern="[A-Za-z]+"required></li>
+            <li><input id="name" type="text" placeholder="Enter name"name="name" onblur="validateForm1()"  size="20"pattern="[A-Za-z]+"required></li>
             <!-- <span id='namemsg1' style="color:red; display:none">Name field can not be blank. Please enter your name using only letters.</span> -->
             <span class="alert alert-danger d-none" id="namemsg1" role="alert">Name field can not be blank. Please enter your name using only letters.</span>
 
@@ -128,6 +128,34 @@
         document.getElementById("gendermsg").classList.add("d-none");
         document.getElementById("gendermsg").innerHTML=""; 
       }
+
+      let gender;
+
+      if(document.getElementById('m').checked){
+        gender = 'Male';
+      }else if(document.getElementById('f').checked){
+        gender = 'Female';
+      } else{
+        gender = 'Other';
+      }
+
+      const user = {
+        username: document.getElementById("uname").value,
+        name: document.getElementById("name").value,
+        email: document.getElementById("Email").value,
+        sex: gender,
+      };
+
+      fetch('http://localhost:9000/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      .then(res => res.json())
+      .then(data => alert(`User ${data.user} is added to the database`));
+
     }
     /*
     * Funkcija za provjeru podudaranja passworda

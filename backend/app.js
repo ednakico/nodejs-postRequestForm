@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 var cors = require('cors');
-const url = 'mongodb://localhost/AlienDBex';
+const url = 'mongodb://localhost/userDB';
 
 const app = express();
 
@@ -15,8 +15,8 @@ con.on('open', () => {
 app.use(express.json());
 app.use(cors());
 
-const alienRouter = require('./routes/aliens');
-app.use('/api/aliens', alienRouter);
+const userRouter = require('./routes/users');
+app.use('/api/users', userRouter);
 
 app.listen(9000, () => {
     console.log('Server started');
