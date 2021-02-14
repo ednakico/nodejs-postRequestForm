@@ -19,8 +19,13 @@ router.post('/', async(req,res) => {
     const newUser = new User({
         username: req.body.username,
         name: req.body.name,
+        lastname: req.body.lastname,
+        country: req.body.country,
+        zip: req.body.zip,
+        code: req.body.code,
         email: req.body.email,
         sex: req.body.sex,
+        interests: req.body.interests,
     });
 
     try{
